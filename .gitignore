@@ -33,3 +33,10 @@ HELP.md
 .mvn/
 mvnw
 mvnw.cmd
+
+
+##Gradle##
+.gradle/
+gradle/
+gradlew
+gradlew.bat
