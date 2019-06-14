@@ -1,0 +1,28 @@
+select location.sn as 抽屉号, cab.name as 柜子名,cab.sn as 柜子编号 from lis_smart_cabinet_location location 
+join lis_smart_cabinet cab on location.smart_cabinet_id=cab.id
+join lis_cabinet_group grp on location.cabinet_group_id=grp.id
+where grp.sn='B009';
+
+SELECT packet.epc
+  FROM shpharm_packet_set packet where  packet.make_status = '1' and packet.settlement_status <> '1' and packet.recover_status <> '1' and packet.epc is not null 
+  and packet.current_cabinet_location_id=(select id from lis_smart_cabinet_location where sn='L064');
+
+
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP 1000 [id]
+      ,[create_time]
+      ,[create_user]
+      ,[update_time]
+      ,[update_user]
+      ,[drug_admin_user_id]
+      ,[email]
+      ,[login_name]
+      ,[name]
+      ,[password]
+      ,[rfid_uid]
+      ,[uhf_epc]
+      ,[uhf_tid]
+      ,[belongs_department_id]
+      ,[enterprise_id]
+  FROM [sygc_syby0524].[dbo].[shpharm_users]
