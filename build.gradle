@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "net.foragerr.jmeter" version "1.1.0-4.0"
 }
 
 group 'acacia.com.jenkins.pipline.project'
@@ -8,9 +9,29 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    mavenLocal()
+    maven {
+        url 'http://central.maven.org/maven2/'
+    }
     mavenCentral()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jmeter {
+    testFileDir = file("JMeterScript")
+    jmTestFiles = [file("JMeterScript/ShPharm/ShPharm.jmx"),
+                    file("JMeterScript/Sygc/Sygc.jmx")]
+    csvLogFile = false
+    afterEvaluate {
+        def jMeterExt = project.extensions.findByName("jmeter")
+        jMeterExt.metaClass.enableReports = true
+        jMeterExt.metaClass.enableExtendedReports = false
+        jMeterExt.metaClass.reportTitle = null
+        jMeterExt.metaClass.reportPostfix = ""
+        jMeterExt.metaClass.reportXslt = "$project.projectDir/jmeter-results-detail-report_21.xsl"
+       // resultsLog = new File(project.buildDir, "jmeter-report/loadtest-results.xml")
+    }
 }
