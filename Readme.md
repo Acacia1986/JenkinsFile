@@ -16,3 +16,12 @@
 **JMeter Scripts**
 
 1.Need to make sure any DataSet in jmx file will use relative path
+
+
+
+**Gradle JMeter Command**
+
+1. gradle jmRun
+
+2. gradle jmReport
+
